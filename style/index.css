@@ -1,0 +1,299 @@
+
+/* ============ 1> MEXE NA PAGINA TODA ============ */
+
+* {
+  margin: 0;                         /* tira a margem padrão de todos os elementos */
+    padding: 0;                        /* tira o recuo padrão das listas */
+    padding: 0;                         /* tira o recuo padrão das listas */
+    box-sizing: border-box;             /* padding e borda contam DENTRO da largura */
+}
+
+img {
+    display: block;                     /* elimina o espacinho branco embaixo da imagem */
+    max-width: 100%;                    /* imagem nunca estoura o container */
+}
+
+a {
+    text-decoration: none;              /* tira o sublinhado dos links da navegação */
+}
+
+button {
+    font-family: inherit;               /* botão herda a fonte da página */
+    font-size: inherit;                 /* sem isso vira Arial 13px */
+    cursor: pointer;                    /* mãozinha ao passar o mouse no botão de compra e navegação */
+    border: none;                       /* tira a borda cinza padrão */
+}
+
+
+/* ============ 2. Mexe nos containers ============ */
+
+:root {
+    --azul:        #3498db;             /* topo do gradiente */
+    --azul-medio:  #2980b9;             /* tom do meio, usado no botão */
+    --azul-base:   #1a5276;             /* tom mais escuro: a "lateral" do botão */
+    --azul-escuro: #2c3e50;             /* base do gradiente da página */
+
+    --card:        #ffffff;  /* fundo do card do produto */
+    --texto:       #2c3e50;  /* cor do texto do card */
+    --texto-suave: #7f8c8d;           /* cor do texto do card, mas mais suave */
+    --fundo-ilus:  #eef4f9;             /* fundo atrás das ilustrações */
+
+    --raio: 12px;   /* raio de borda dos cards e botões */
+    --transicao: .3s ease;  /* tempo e curva da transição de hover */
+}
+
+
+/* ============ 3. BASE ============ */
+
+body {
+    font-family: Arial, Helvetica, sans-serif; /* fonte sem serifa, fácil de ler */
+    min-height: 100vh;   /* garante que o gradiente cubra a tela inteira */
+    background: linear-gradient(to bottom, var(--azul), var(--azul-escuro)); /* gradiente vertical do topo pro rodapé */
+    background-attachment: fixed;       /* trava o gradiente: não repete ao rolar */
+    padding-bottom: 40px;
+}
+
+
+/* ============ 4. CABEÇALHO ============ */
+
+#atual {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, .18);
+}
+
+.cabecalho {
+    display: flex;                      /* marca e menu lado a lado */
+    align-items: center;
+    justify-content: space-between;     /* marca à esquerda, menu à direita */
+    flex-wrap: wrap;                    /* em tela estreita o menu desce */
+    gap: 12px;      /* espaçamento entre marca e menu quando o menu desce */
+    max-width: 1100px;  /* largura máxima do conteúdo */
+    margin: 0 auto; /* centraliza o conteúdo do cabeçalho */
+    padding: 20px; /* espaçamento interno do cabeçalho */
+}
+
+.cabecalho__marca {
+    color: #ffffff;
+    font-size: 1.2rem;  /* tamanho da fonte da marca */
+    font-weight: bold;  /* deixa a marca em negrito */
+    letter-spacing: .5px;  /* espaçamento entre letras da marca */
+}
+
+.cabecalho__nav {
+    display: flex;
+    gap: 6px;  /* espaçamento entre os links do menu */
+}
+
+.cabecalho__link {
+    color: rgba(255, 255, 255, .85);
+    padding: 8px 14px;                  /* aumenta a área clicável */
+    border-radius: 6px;   /* arredonda os cantos do fundo do link */
+    font-size: .95rem;  /* tamanho da fonte dos links do menu */
+    transition: background-color var(--transicao),
+                color var(--transicao);
+ list-style: none; /* remove os marcadores de lista */
+
+
+}
+
+.cabecalho__link:hover,
+.cabecalho__link:focus {                /* mesmo visual pro mouse e pro teclado */
+    background-color: rgba(255, 255, 255, .18);
+    color: #ffffff;
+}
+
+
+/* ============ 5. TÍTULO ============ */
+
+.titulo {
+    color: #ffffff;
+    text-align: center;
+    font-size: 2.2rem;
+    padding-top: 20px;
+}
+
+.subtitulo {
+    color: rgba(255, 255, 255, .8);
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.05rem;
+}
+
+
+/* ============ 6. GRID DO CATÁLOGO ============ */
+
+.catalogo {
+    max-width: 1100px; /* largura máxima do conteúdo */
+    margin: 45px auto 0;  /* centraliza o conteúdo do catálogo */
+    padding: 0 20px;  /* espaçamento interno do catálogo */
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 28px;
+}
+/* auto-fill = cria quantas colunas couberem sozinho
+   minmax(280px, 1fr) = cada coluna tem no mínimo 280px e divide a sobra
+   Resultado: 3 colunas no notebook, 2 no tablet, 1 no celular — sem media query */
+
+
+/* ============ 7. CARD DO PRODUTO ============ */
+
+.produto {
+    background-color: var(--card);
+    border-radius: var(--raio);
+    overflow: hidden;                   /* corta a foto nos cantos arredondados */
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
+
+    display: flex;
+    flex-direction: column;             /* foto em cima, corpo embaixo */
+
+    transition: transform var(--transicao),
+                box-shadow var(--transicao);
+}
+
+.produto:hover {
+    transform: translateY(-8px) scale(1.02);        /* sobe e cresce um pouco */
+    box-shadow: 0 14px 32px rgba(0, 0, 0, .35);     /* sombra maior = parece mais alto */
+}
+
+/* --- Foto --- */
+.produto__foto {
+    position: relative;                 /* âncora para a etiqueta por cima */
+    height: 210px;                      /* ALTURA FIXA: é isso que alinha os cards */
+    overflow: hidden;                   /* segura a foto dentro da caixa */
+    background-color: var(--fundo-ilus);
+}
+
+.produto__foto img {
+    width: 100%;
+    height: 100%;                       /* preenche os 210px da caixa... */
+    object-fit: cover;                  /* ...cortando o excesso, sem espremer a foto */
+    object-position: center;            /* corta pelas bordas, mantendo o centro */
+    transition: transform .5s ease;
+}
+
+.produto:hover .produto__foto img {     /* mouse no CARD afeta a IMAGEM dentro dele */
+    transform: scale(1.1);              /* zoom de 10% */
+}
+
+/* Variação para ILUSTRAÇÕES (desenho com fundo branco).
+   Cortar um desenho fica horrível — então aqui a imagem
+   é encaixada inteira, com folga, em vez de preencher. */
+.produto__foto--ilustracao img {
+    object-fit: contain;                /* mostra a ilustração INTEIRA, sem cortar */
+    padding: 14px;                      /* respiro entre o desenho e a borda */
+}
+
+.produto:hover .produto__foto--ilustracao img {
+    transform: scale(1.06);             /* zoom menor: ilustração não tem sobra pra cortar */
+}
+
+/* --- Etiqueta --- */
+.produto__etiqueta {
+    position: absolute;                 /* flutua SOBRE a foto */
+    top: 12px;
+    left: 12px;
+    padding: 6px 13px;
+    border-radius: 20px;                /* valor alto = pílula */
+    background-color: var(--azul-escuro);
+    color: #ffffff;
+    font-size: .7rem;
+    font-weight: bold;
+    text-transform: uppercase;          /* MAIÚSCULA sem mexer no HTML */
+    letter-spacing: .6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+}
+
+/* --- Corpo --- */
+.produto__corpo {
+    padding: 22px;
+
+    flex: 1;                            /* estica pra ocupar a sobra do card */
+    display: flex;
+    flex-direction: column;             /* nome, descrição, preço e botão empilhados */
+}
+
+.produto__nome {
+    color: var(--texto);
+    font-size: 1.18rem;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+.produto__descricao {
+    color: var(--texto-suave);
+    font-size: .92rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.produto__preco {
+    display: block;                     /* <span> é inline; block faz a margem funcionar */
+    color: var(--azul-escuro);
+    font-size: 1.7rem;
+    font-weight: bold;
+    letter-spacing: -.5px;              /* números apertadinhos parecem preço de verdade */
+    margin-bottom: 18px;
+
+    margin-top: auto;                   /* empurra preço E botão pro fim do card */
+}
+/* O "margin-top: auto" aqui é o que alinha todos os botões na mesma altura,
+   mesmo com descrições de tamanhos diferentes. */
+
+
+/* ============ 8. BOTÃO DE COMPRA ============ */
+
+.produto__botao {
+    width: 100%;                        /* ocupa a largura toda do card */
+    padding: 15px 20px;
+    border-radius: 10px;
+
+    background: linear-gradient(to right,
+                var(--azul), var(--azul-medio), var(--azul-base));
+    background-size: 200% auto;         /* gradiente do dobro da largura do botão */
+
+    color: #ffffff;
+    font-size: .95rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .3);        /* relevo na palavra */
+
+    box-shadow: 0 4px 0 var(--azul-base),            /* a ESPESSURA do botão (sem borrão) */
+                0 6px 14px rgba(0, 0, 0, .25);       /* sombra projetada no card */
+
+    transition: background-position .45s ease,
+                transform var(--transicao),
+                box-shadow var(--transicao);
+}
+
+.produto__botao:hover {
+    background-position: right center;               /* desliza pro tom escuro */
+    transform: translateY(-2px);                     /* levanta */
+    box-shadow: 0 6px 0 var(--azul-base),            /* espessura aumenta junto */
+                0 10px 20px rgba(0, 0, 0, .3);
+}
+
+.produto__botao:focus {                 /* selecionado pelo teclado (tecla Tab) */
+    outline: 3px solid var(--azul-escuro);
+    outline-offset: 3px;
+}
+
+.produto__botao:active {                /* no instante do clique */
+    transform: translateY(4px);         /* afunda exatamente a altura da base */
+    box-shadow: 0 0 0 var(--azul-base), /* espessura vai a zero: encostou */
+                0 1px 4px rgba(0, 0, 0, .3);
+}
+
+
+/* ============ 9. RODAPÉ ============ */
+
+.rodape {
+    max-width: 1100px;
+    margin: 55px auto 0;
+    padding: 25px 20px;
+    border-top: 1px solid rgba(255, 255, 255, .2);
+    color: rgba(255, 255, 255, .7);
+    text-align: center;
+    font-size: 12px;
+}
