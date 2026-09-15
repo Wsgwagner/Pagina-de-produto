@@ -90,7 +90,13 @@
                 <h2 class="produto__nome">Diarréia</h2>
                 <p class="produto__descricao">A desculpa perfeita para matar aquele tempo no banheiro da empresa.</p>
                 <span class="produto__preco">R$ 15,99</span>
-                <button type="button" class="produto__botao">Comprar</button>
+
+                <!-- id = o "nome" que o JS usa pra achar este botão específico -->
+                <button type="button" class="produto__botao" id="botao-caganeira">Comprar</button>
+
+                <!-- preload="auto" = o navegador já baixa o som antes do clique, pra não atrasar -->
+                <!-- sem "controls" a tag não aparece na tela: é só o tocador invisível -->
+                <audio id="som-caganeira" src="assets/cagao.mp3" preload="auto"></audio>
             </div>
         </article>
         <article class="produto">
@@ -165,8 +171,8 @@
         <p>Central de Desculpas  catálogo.</p>
     </footer>
 
-
-
+    <script src="js/script.js"></script>  <!-- carrega o JS no fim: o HTML já existe quando o script roda -->
 </body>
+
 
 </html>
