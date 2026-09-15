@@ -28,7 +28,7 @@ button {
 /* ============ 2. Mexe nos containers ============ */
 
 :root {
-    --azul:        #3498db;             /* topo do gradiente */
+    --azul:        #3498db;            /* cor de toda a página */
     --azul-medio:  #2980b9;             /* tom do meio, usado no botão */
     --azul-base:   #1a5276;             /* tom mais escuro: a "lateral" do botão */
     --azul-escuro: #2c3e50;             /* base do gradiente da página */
@@ -230,7 +230,7 @@ body {
 .produto__preco {
     display: block;                     /* <span> é inline; block faz a margem funcionar */
     color: var(--azul-escuro);
-    font-size: 1.7rem;
+    font-size: 1.7rem;                 /* preço grande e chamativo */
     font-weight: bold;
     letter-spacing: -.5px;              /* números apertadinhos parecem preço de verdade */
     margin-bottom: 18px;
@@ -265,6 +265,7 @@ body {
     transition: background-position .45s ease,
                 transform var(--transicao),
                 box-shadow var(--transicao);
+
 }
 
 .produto__botao:hover {
@@ -272,6 +273,8 @@ body {
     transform: translateY(-2px);                     /* levanta */
     box-shadow: 0 6px 0 var(--azul-base),            /* espessura aumenta junto */
                 0 10px 20px rgba(0, 0, 0, .3);
+
+                
 }
 
 .produto__botao:focus {                 /* selecionado pelo teclado (tecla Tab) */
@@ -284,6 +287,68 @@ body {
     box-shadow: 0 0 0 var(--azul-base), /* espessura vai a zero: encostou */
                 0 1px 4px rgba(0, 0, 0, .3);
 }
+
+
+.produto__botao1 {
+    width: 100%;                        /* ocupa a largura toda do card */
+    padding: 15px 20px;
+    border-radius: 10px;
+
+    background: linear-gradient(to right,
+                var(--azul), var(--azul-medio), var(--azul-base));
+    background-size: 200% auto;         /* gradiente do dobro da largura do botão */
+
+    color: #ffffff;
+    font-size: .95rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .3);        /* relevo na palavra */
+
+    box-shadow: 0 4px 0 var(--azul-base),            /* a ESPESSURA do botão (sem borrão) */
+                0 6px 14px rgba(0, 0, 0, .25);       /* sombra projetada no card */
+
+    transition: background-position .45s ease,
+                transform var(--transicao),
+                box-shadow var(--transicao);
+}
+
+
+.produto__botao1:hover {
+        background-position: right center;               /* desliza pro tom escuro */
+    transform: translateY(-2px);                     /* levanta */
+    box-shadow: 0 6px 0 var(--azul-base),            /* espessura aumenta junto */
+                0 10px 20px rgba(0, 0, 0, .3);
+
+      rotate:6deg;               
+}
+
+.produto__botao1:focus {                 /* selecionado pelo teclado (tecla Tab) */
+    outline: 3px solid var(--azul-escuro);
+    outline-offset: 3px;
+}
+
+.produto__botao1:active {                /* no instante do clique */
+    transform: translateY(4px);         /* afunda exatamente a altura da base */
+    box-shadow: 0 0 0 var(--azul-base), /* espessura vai a zero: encostou */
+                0 1px 4px rgba(0, 0, 0, .3);
+}
+
+@keyframes tremer {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+
+.produto__botao1:hover {
+  animation: tremer 0.3s ease-in-out infinite;
+}
+
+   
+
 
 
 /* ============ 9. RODAPÉ ============ */
